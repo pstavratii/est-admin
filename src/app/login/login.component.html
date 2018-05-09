@@ -2,20 +2,28 @@
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <img src="assets/images/logo.png" width="150px" class="user-avatar" />
-            <h1>SB Admin BS4 Angular5</h1>
-            <form role="form">
+            <h1>SPArtA Admin Angular6</h1>
+            <form (ngSubmit)="onLogin(f)" #f="ngForm">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Email">
+                        <input type="text"
+                               name="email"
+                               class="form-control input-underline input-lg"
+                               id="email"
+                               placeholder="Email"
+                               ngModel>
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+                        <input type="password"
+                               class="form-control input-underline input-lg"
+                               id="password"
+                               name="password"
+                               placeholder="Password"
+                               ngModel>
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Log in </a>
-                &nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a>
+                <button class="btn rounded-btn" type="submit"> Log in </button>
             </form>
         </div>
     </div>

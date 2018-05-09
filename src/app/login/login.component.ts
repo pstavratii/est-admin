@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import {NgForm} from '@angular/forms';
+import {LoginService} from './login.service';
+import {CookieService} from 'ngx-cookie-service';
+import {AuthGuard} from '../shared/guard';
 
 @Component({
     selector: 'app-login',
@@ -9,11 +13,26 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-    constructor(public router: Router) {}
+    constructor(
+        public router: Router,
+        private loginService: LoginService,
+        private cookieService: CookieService,
+        private authGuard: AuthGuard
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (this.authGuard.canActivate()) {
+            this.router.navigate(['/dashboard'])
+        }
+    }
 
-    onLoggedin() {
+    onLogin(form: NgForm) {
+        const email = form.value.email;
+        const password = form.value.password;
+        this.loginService.loginUser(email, password);
+        if (this.authGuard.canActivate()) {
+            this.router.navigate(['/dashboard'])
+        }
         localStorage.setItem('isLoggedin', 'true');
     }
 }

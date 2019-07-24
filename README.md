@@ -1,4 +1,4 @@
-# Admin for SpaArtA web app
+# Admin for est-admin web app
 
 Simple Dashboard Admin App built using Angular 6 and Bootstrap 4
 

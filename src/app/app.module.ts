@@ -9,8 +9,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import {CookieService} from 'ngx-cookie-service';
-import {AuthService} from './shared/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService} from './shared/services/auth.service';
+import { environment} from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -29,6 +34,10 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig, 'est-motors'),
+        AngularFirestoreModule,
+        AngularFireAuthModule,
+        AngularFireStorageModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

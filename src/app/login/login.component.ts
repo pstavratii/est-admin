@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         if (this.authGuard.canActivate()) {
-            this.router.navigate(['/dashboard'])
+            this.router.navigate(['/dashboard']);
         }
     }
 
@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
         const password = form.value.password;
         this.loginService.loginUser(email, password);
         if (this.authGuard.canActivate()) {
-            this.router.navigate(['/dashboard'])
+            this.router.navigate(['/dashboard']);
+        } else {
+
         }
         localStorage.setItem('isLoggedin', 'true');
     }
